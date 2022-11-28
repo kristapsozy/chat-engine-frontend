@@ -1,0 +1,19 @@
+<section class="chat-section">
+  <div class="chat-container">
+    <div>
+      <button class="button" [hidden]="isChatStarted" (click)="getMessage()" type="button"> Start Chat</button>
+    </div>
+    <div class="message-section">
+      <div class="message-container" *ngFor="let message of messages">
+        <p *ngIf="message.text.startsWith('R:')" class="server-message">
+          {{message.text.replace("R: ", "")}} </p>
+        <p *ngIf="message.text.startsWith('H:')" class="user-message">
+          {{message.text.replace("H: ", "")}} </p>
+      </div>
+    </div>
+    <div class="input-field">
+      <input class="input" type="text" placeholder="Your answer" [(ngModel)]="message.text"/>
+    </div>
+    <button class="button" [disabled]="!isChatStarted" (click)="sendMessage()" type="button"> Send Message</button>
+  </div>
+</section>
